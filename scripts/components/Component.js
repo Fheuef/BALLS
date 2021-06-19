@@ -5,6 +5,6 @@ class Component {
 		this._start();
 	}
 
-	_start();
-	_update();
+	_start() {};
+	_update() {};
 }

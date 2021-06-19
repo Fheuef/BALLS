@@ -6,31 +6,27 @@ function startBallManagers() {
 	}
 }
 
+function getScripts(scripts, callback) {
+    var progress = 0;
+	
+    scripts.forEach(function(script) { 
+        $.getScript(script, function () {
+            if (++progress == scripts.length) callback();
+        }); 
+    });
+}
+
 function initBalls() {
 
 	var scripts_arr = [
-		"base/Ball.js",
-		"base/BallManager.js",
-		"base/Vector2.js",
-		"components/Component.js",
-		"components/BasicRenderer.js",
-		"test/TestCanvas.js",
+		"scripts/base/Ball.js",
+		"scripts/base/BallsManager.js",
+		"scripts/base/Vector2.js",
+		"scripts/components/Component.js",
+		"scripts/components/BasicRenderer.js",
+		"scripts/test/TestCanvas.js",
 	];
 
-	// Loads several scripts
-	$.getMultiScripts = function(arr, path) {
-		var _arr = $.map(arr, function(scr) {
-			return $.getScript( (path||"") + scr );
-		});
-			
-		_arr.push($.Deferred(function( deferred ){
-			$( deferred.resolve );
-		}));
-			
-		return $.when.apply($, _arr);
-	}
-
-
-	$.getMultiScripts(scripts_arr, '/scripts/').done(startBallManagers);
+	getScripts(scripts_arr, startBallManagers);
 	
 }

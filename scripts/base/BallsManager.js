@@ -1,6 +1,6 @@
 class BallsManager {
-	constructor (canvasId) {
-		this.canvas = document.getElementById(canvasId);
+	constructor (canvas) {
+		this.canvas = canvas;
 		this.interval = 22;
 
 		this._start();
@@ -14,8 +14,8 @@ class BallsManager {
 		this.balls = [];
 		this.mousePos = new Vector2();	//TODO Mouse stuff
 
-		this.width = canvas.getBoundingClientRect().width;
-		this.height = canvas.getBoundingClientRect().height;
+		this.width = this.canvas.getBoundingClientRect().width;
+		this.height = this.canvas.getBoundingClientRect().height;
 
 		testOval(this.canvas, this.width, this.height);
 
