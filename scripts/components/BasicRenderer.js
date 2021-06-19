@@ -1,3 +1,8 @@
+/**
+ * A ball with this component will be rendered as a basic colored circle.
+ * 
+ * This is the most basic renderer
+ */
 class BasicRenderer extends Component {
 	constructor(parent) {
 		this.parent = parent;

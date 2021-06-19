@@ -1,5 +1,9 @@
-class Ball {
+class BallObject {
 	constructor(manager, radius = 0, posx = 0, posy = 0) {
+		// TODO make it more general, it can be any object and not necessarily a ball
+		// (no radius, no velocity, etc)
+		
+		// TODO add angle
 		this.manager = manager;
 		this.position = new Vector2(posx, posy);
 		this.radius = radius;
