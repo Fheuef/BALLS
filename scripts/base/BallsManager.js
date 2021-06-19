@@ -17,6 +17,8 @@ class BallsManager {
 		this.width = canvas.getBoundingClientRect().width;
 		this.height = canvas.getBoundingClientRect().height;
 
+		testOval(this.canvas, this.width, this.height);
+
 		this.start();
 	}
 
