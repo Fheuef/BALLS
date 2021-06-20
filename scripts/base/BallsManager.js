@@ -25,7 +25,7 @@ class BallsManager {
 		// testOval(this.canvas, this.width, this.height);
 		// this.addObject(new rainBowTest1(this.canvas, this.width, this.height));
 
-		for (let i = 0; i < 20; i++) {
+		for (let i = 0; i < 1000; i++) {
 			let x = Math.random() * this.width;
 			let y = Math.random() * this.height;
 			let r = Math.random() * 60 + 10;
@@ -66,6 +66,36 @@ class BallsManager {
 
 	}
 
+	collideWithWall(obj, pos) {
+		// TODO check if ball
+
+		// TODO THIS IS FUCKIN BASIC AND SHITTY PLEASE REWRITE ASAP
+
+		if (pos.x - obj.radius < 0) {
+			let vel = obj.velocity;
+
+			obj.velocity = new Vector2(Math.abs(vel.x), vel.y);
+		}
+		else if (pos.x + obj.radius > this.width) {
+			let vel = obj.velocity;
+
+			obj.velocity = new Vector2(-Math.abs(vel.x), vel.y);
+		}
+
+		if (pos.y - obj.radius < 0) {
+			let vel = obj.velocity;
+
+			obj.velocity = new Vector2(vel.x, Math.abs(vel.y));
+		}
+		else if (pos.y + obj.radius > this.height) {
+			let vel = obj.velocity;
+
+			obj.velocity = new Vector2(vel.x, -Math.abs(vel.y));
+		}
+
+		return pos;
+	}
+
 	/**
 	 * Applies all the physics calculcations, such as moving objects 
 	 * and collisions.
@@ -82,6 +112,7 @@ class BallsManager {
 				var nextPos = obj.position.add(obj.velocity);
 
 				// TODO collision stuff
+				nextPos = this.collideWithWall(obj, nextPos);
 
 				obj.position = nextPos;
 			}

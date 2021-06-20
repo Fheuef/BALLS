@@ -16,7 +16,8 @@ class BasicRenderer extends Component {
 		// TODO opacity
 
 
-		//TODO check if parent is Ball
+		// TODO check if parent is Ball
+		// TODO check if inside screen
 		this.ctx.beginPath();
 		this.ctx.ellipse(
 				this.parent.position.x, 

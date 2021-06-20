@@ -4,6 +4,8 @@ class BallObject {
 		this.position = new Vector2(posx, posy);
 		this.angle = 0.0;
 		this.velocity = new Vector2();
+		this.angVelocity = new Vector2();
+		this.mass = 1;
 		this.fixed = false;
 
 		this.components = [];
