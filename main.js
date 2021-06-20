@@ -1,13 +1,20 @@
+function makeFullscreen() {
+	try {
+		var mainCan = document.getElementById("mainCanvas");
+
+		mainCan.width = window.innerWidth;
+		mainCan.height = window.innerHeight;
+	}
+	catch (e) {}
+}
+
 /**
  * Starts a BALLS instance in all canvas that have the 
  * "ballsCanvas class"
  */
 function startBallManagers() {
 	
-	var mainCan = document.getElementById("mainCanvas");
-
-	mainCan.width = window.innerWidth;
-	mainCan.height = window.innerHeight;
+	makeFullscreen();
 
 
 	var cans = document.getElementsByClassName("ballsCanvas");
@@ -48,11 +55,12 @@ function initBalls() {
 
 	// Add new scripts here
 	var scripts = [
-		"scripts/base/BallObject.js",
-		"scripts/base/BallsManager.js",
-		"scripts/base/Vector2.js",
 		"scripts/components/Component.js",
 		"scripts/components/BasicRenderer.js",
+		"scripts/base/BallObject.js",
+		"scripts/base/Ball.js",
+		"scripts/base/BallsManager.js",
+		"scripts/base/Vector2.js",
 		"scripts/test/TestCanvas.js",
 	];
 

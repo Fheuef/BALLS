@@ -1,13 +1,10 @@
 class BallObject {
-	constructor(manager, radius = 0, posx = 0, posy = 0) {
-		// TODO make it more general, it can be any object and not necessarily a ball
-		// (no radius, no velocity, etc)
-		
-		// TODO add angle
+	constructor(manager, posx = 0, posy = 0) {
 		this.manager = manager;
 		this.position = new Vector2(posx, posy);
-		this.radius = radius;
+		this.angle = 0.0;
 		this.velocity = new Vector2();
+		this.fixed = false;
 
 		this.components = [];
 
@@ -19,7 +16,7 @@ class BallObject {
 	 */
 	 _start() {
 
-		for (let comp of components) {
+		for (let comp of this.components) {
 			comp._start();
 		}
 
@@ -39,7 +36,7 @@ class BallObject {
 	_update() {
 
 
-		for (let comp of components) {
+		for (let comp of this.components) {
 			comp._update();
 		}
 
@@ -51,5 +48,9 @@ class BallObject {
 	 */
 	 update() {
 
+	}
+
+	addComponent(component) {
+		this.components.push(component);
 	}
 }

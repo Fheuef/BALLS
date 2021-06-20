@@ -19,12 +19,27 @@ class BallsManager {
 	}
 
 	/**
-	 * If you've got tests to run before the start function, 
-	 * dump them in here
+	 * If you've got tests to run, dump them in here
 	 */
 	tests() {
 		// testOval(this.canvas, this.width, this.height);
-		this.addObject(new rainBowTest1(this.canvas, this.width, this.height));
+		// this.addObject(new rainBowTest1(this.canvas, this.width, this.height));
+
+		for (let i = 0; i < 20; i++) {
+			let x = Math.random() * this.width;
+			let y = Math.random() * this.height;
+			let r = Math.random() * 60 + 10;
+
+			var ball = new Ball(this, x, y, r);
+			ball.addComponent(new BasicRenderer(ball));
+
+			x = Math.random() * 50 - 25;
+			y = Math.random() * 50 - 25;
+			ball.velocity = new Vector2(x, y);
+
+			
+			this.addObject(ball);
+		}
 	}
 
 	/**
@@ -38,6 +53,7 @@ class BallsManager {
 		this.width = this.canvas.getBoundingClientRect().width - 2;
 		this.height = this.canvas.getBoundingClientRect().height - 2;
 
+		// setTimeout(this.tests.bind(this), 500);
 		this.tests();
 
 		this.start();
@@ -59,9 +75,11 @@ class BallsManager {
 	applyPhysics() {
 		//TODO Movement and collisions
 
+		console.log("physics !");
+
 		for (let obj of this.objects) {
 			try {
-				nextPos = obj.position.add(obj.velocity);
+				var nextPos = obj.position.add(obj.velocity);
 
 				// TODO collision stuff
 
@@ -71,10 +89,18 @@ class BallsManager {
 		}
 	}
 
+	clearCanvas() {
+		let ctx = this.canvas.getContext("2d");
+
+		ctx.clearRect(0, 0, this.width, this.height);
+	}
+
 	/**
 	 * Called once per frame
 	 */
 	_update() {
+		this.clearCanvas();
+
 		this.applyPhysics();
 
 		this.update();
