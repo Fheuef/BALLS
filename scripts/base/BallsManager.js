@@ -25,7 +25,7 @@ class BallsManager {
 		// testOval(this.canvas, this.width, this.height);
 		// this.addObject(new rainBowTest1(this.canvas, this.width, this.height));
 
-		for (let i = 0; i < 1000; i++) {
+		for (let i = 0; i < 20; i++) {
 			let x = Math.random() * this.width;
 			let y = Math.random() * this.height;
 			let r = Math.random() * 60 + 10;
